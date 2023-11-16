@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 function App() {
+  const [animList] = useAutoAnimate();
   //stringify -> Convertir objeto a cadena JSON | parse -> Convertir cadena JSON a objeto
   const [todoList, setTodoList] = useState(
     JSON.parse(localStorage.getItem('todo-list')) || []
@@ -59,7 +61,7 @@ function App() {
             No tienes tareas pendientes
           </div>
         )}
-        <ul className="list-group">
+        <ul className="list-group" ref={animList}>
           {todoList.map((task, i) => (
             <li
               key={i}
